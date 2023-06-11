@@ -1,0 +1,44 @@
+.circle-animation{
+    animation: boom 1.8s infinite;
+}
+
+@keyframes boom {
+    0%{
+      transform: scale(1);
+    }
+
+    /* 10%{
+        transform: scale(1.05);
+    }
+    
+    20%{
+        transform: scale(1.1);
+    }
+    30%{
+        transform: scale(1.2);
+    } */
+    /* 50%{
+        transform: scale(1.5);
+        opacity: 0;
+    } */
+    /* 70%{
+        transform: scale(1.2);
+    }
+    80%{
+        transform: scale(1.1);
+    }*/
+    100%{
+        transform: scale(1.5);
+        opacity: 0;
+    } 
+}
+
+.statsHome{
+    animation: upDown 4s infinite;
+}
+
+@keyframes upDown {
+    50%{
+        transform: translateY(-10px);     
+    }
+}
