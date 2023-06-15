@@ -15,7 +15,7 @@ import skyroket from '../assets/homeImages/skyroket.png'
 export default function Homepage() {
     return (
         <div className=' h-screen w-screen bg-[#101728] overflow-y-scroll'>
-            <Navbar />
+            {/* <Navbar /> */}
             {/* Hero Section */}
             <div className=' h-[60px]'>
 
@@ -104,7 +104,7 @@ export default function Homepage() {
 
                     {/* Right Section */}
                     <div className=' relative'>
-                        <img src={inbox} alt='inbox' className='relative z-10' />
+                        <img src={inbox} alt='inbox' className='relative z-10 statsHome' />
                         <div className=' rounded-full bg-[#E8ECEC] h-[400px] w-[500px] absolute blur-3xl opacity-20 top-0 right-[-5%] z-[0]'></div>
                     </div>
                 </div>
@@ -116,7 +116,7 @@ export default function Homepage() {
 
                     {/* Right Section */}
                     <div className=' relative'>
-                        <img src={skyroket} alt='skyrocket your sales' className='relative z-10' />
+                        <img src={skyroket} alt='skyrocket your sales' className='relative z-10' height={500} width={500}/>
                         <div className=' rounded-full bg-[#9B6FF4] h-[500px] w-[700px] absolute blur-3xl opacity-20 top-0 right-[-5%] z-[0]'></div>
                     </div>
 

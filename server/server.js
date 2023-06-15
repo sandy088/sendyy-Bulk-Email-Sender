@@ -2,9 +2,10 @@ const express = require('express')
 const { dbConnect } = require('./config/database')
 const router = require('./routes/auth')
 const cookieParser = require('cookie-parser');
+const cors = require('cors')
 
 const app = express()
-
+app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
 
@@ -15,6 +16,6 @@ dbConnect()
 
 
 
-app.listen(3000, ()=>{
+app.listen(4000, ()=>{
     console.log("Server Started Successfully")
 })
