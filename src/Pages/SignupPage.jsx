@@ -8,18 +8,18 @@ import { Link } from 'react-router-dom'
 import { DataContext } from '../context/DataProvider'
 import { toast } from 'react-hot-toast'
 
-export const SignupPage = () => {
-  const { signupData, signUpClick } = useContext(DataContext)
-
+export const SignupPage = ({isLogin = false}) => {
+  const { signupData, loginData, authClick } = useContext(DataContext)
+console.log(isLogin)
   const onClickHandler = () => {
-    if(signupData.name.length <= 6 ||signupData.email.length <= 6 || signupData.name.length <= 6 ){
+    if(!isLogin && (signupData.name.length <= 6 ||signupData.email.length <= 6 || signupData.name.length <= 6) ){
       console.log("Toast shown")
       
       console.log("All the fields length should be greator then 6")
       toast.error("All fields length should be greator then 6")
       
     }else{
-      signUpClick()
+      isLogin? authClick(isLogin = true) : authClick()
       toast.success("Signing up")
     }
   }
@@ -37,14 +37,14 @@ export const SignupPage = () => {
 
         {/* for signupForm and side logo */}
         <div className='flex gap-8 justify-between '>
-          <SignupForm />
+          {isLogin? <SignupForm isLogin={true}/>: <SignupForm isLogin={false}/>}
           <div className='flex flex-col justify-end gap-5 items-center'>
-            <img src={logo} alt='security logo' loading='lazy' height={120} width={90} className=' animate-bounce' />
+            <img src={logo} alt='security logo' loading='lazy' height={80} width={60} className=' animate-bounce' />
 
             <button className={` flex items-center gap-2 rounded-lg  bg-[#7450BB] text-white px-4 py-2 hover:bg-[#4f3485]
              hover:text-white transition-color duration-150 relative z-[10]`} onClick={onClickHandler}>
-            
-            Signup Now <BsFillArrowRightCircleFill />
+           {isLogin?'Login' : ' Signup Now'} 
+            <BsFillArrowRightCircleFill />
         </button>
 
           </div>

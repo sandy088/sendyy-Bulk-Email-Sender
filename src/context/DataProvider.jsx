@@ -2,11 +2,14 @@ import { useState } from "react";
 import { createContext } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { Navigate } from "react-router-dom";
 
 
 export const DataContext = createContext()
 
-const DataProvider = ({children}) => {
+const DataProvider = ({ children }) => {
+
+    const [authToken, setAuthToken] = useState(localStorage.getItem("token")? JSON.parse(localStorage.getItem("token")) : null)
 
     const [signupData, setSignupData] = useState({
         name: "",
@@ -15,44 +18,76 @@ const DataProvider = ({children}) => {
         role: "User"
     })
 
+    const [loginData, setLoginData] = useState({
+        email: "",
+        password: "",
+    })
+
+
     const [loading, setLoading] = useState(false)
 
-    const signUpClick = async() => {
+    const authClick = async (isLogin = false) => {
+        console.log(isLogin)
         setLoading(true)
-        toast.loading("Registration in Progress")
+        isLogin ? toast.loading("Logging In") : toast.loading("Registration in Progress")
+        const apiLink = isLogin ? 'http://localhost:4000/api/v2/login' : 'http://localhost:4000/api/v2/signup'
+        const authData = isLogin ? loginData : signupData
         try {
-           const data= await axios.post('http://localhost:4000/api/v2/signup', signupData,  {headers: {
-            'Content-Type': 'application/json',
-            
-          }})
-          toast.dismiss()
-          console.log("Successfully User created✅",data)
-          toast.success("Registration successfull")
+            const data = await axios.post(apiLink, authData, {
+                headers: {
+                    'Content-Type': 'application/json',
+
+                }
+            })
+            toast.dismiss()
+            console.log(data)
+            // isLogin? localStorage.setItem("token", JSON.stringify(data.data.token)) : toast.success("Log in now") 
+            setAuthToken(data.data.token)
+            console.log("Successfully User created✅", data)
+            isLogin ? toast.success("Logged in successfull") : toast.success("Registration successfull")
         } catch (error) {
             console.log(error)
             toast.error("Error while Signing Up")
         }
-        
+
         setLoading(false)
     }
 
-    const onChangeHandler = (e) => {
-        console.log(signupData)
-        setSignupData((prevData) => ({
+    const onChangeHandler = (e, isLogin = false) => {
+        console.log("Checking isLogin: ", isLogin)
+        isLogin? console.log("LoginData: ",loginData) : console.log(signupData)
+
+        isLogin ? setLoginData((prevData) => ({
+            ...prevData,
+            [e.target.name]: e.target.value
+        })) : setSignupData((prevData) => ({
             ...prevData,
             [e.target.name]: e.target.value
         }))
+
+
+    }
+
+    const signOut = () => {
+        
+        setAuthToken(null)
+        localStorage.removeItem("token")
+        toast.success("Logged Out")
+        // Navigate("/")
+        
     }
 
 
-    
+
     const value = {
         signupData,
         setSignupData,
         onChangeHandler,
-        signUpClick,
+        authClick,
         loading,
-        setLoading
+        setLoading,
+        authToken,
+        signOut
     }
 
     return (
