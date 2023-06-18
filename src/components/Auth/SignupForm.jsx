@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import {DataContext} from '../../context/DataProvider'
 
 
-export const SignupForm = ({isLogin = false}) => {
+export const AuthForm = ({isLogin = false}) => {
     const { onChangeHandler } = useContext(DataContext)
 
     const onChanging= (e)=>{
