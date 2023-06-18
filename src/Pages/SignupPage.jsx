@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
 import logo from '../assets/AuthImages/Logo.png'
 import security from '../assets/AuthImages/Security.png'
-import { SignupForm } from '../components/Auth/SignupForm'
+import { AuthForm} from '../components/Auth/SignupForm'
 import {BsFillArrowRightCircleFill} from 'react-icons/bs'
 import { HighlightedText } from '../components/Homepage/HighlightedText'
 import { Link } from 'react-router-dom'
 import { DataContext } from '../context/DataProvider'
 import { toast } from 'react-hot-toast'
 
-export const SignupPage = ({isLogin = false}) => {
+export const AuthPage = ({isLogin = false}) => {
   const { signupData, loginData, authClick } = useContext(DataContext)
 console.log(isLogin)
   const onClickHandler = () => {
@@ -20,7 +20,6 @@ console.log(isLogin)
       
     }else{
       isLogin? authClick(isLogin = true) : authClick()
-      toast.success("Signing up")
     }
   }
 
@@ -37,7 +36,7 @@ console.log(isLogin)
 
         {/* for signupForm and side logo */}
         <div className='flex gap-8 justify-between '>
-          {isLogin? <SignupForm isLogin={true}/>: <SignupForm isLogin={false}/>}
+          {isLogin? <AuthForm isLogin={true}/>: <AuthForm isLogin={false}/>}
           <div className='flex flex-col justify-end gap-5 items-center'>
             <img src={logo} alt='security logo' loading='lazy' height={80} width={60} className=' animate-bounce' />
 

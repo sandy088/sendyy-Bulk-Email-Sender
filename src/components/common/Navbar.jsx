@@ -32,7 +32,7 @@ export const Navbar = () => {
                 {/* now Buttons */}
                 {
                     authToken !== null ? <div className='flex items-center gap-3'>
-                        <CTAButton text="Dashboard" path='/dashboard' />
+                        <CTAButton text="Dashboard" path='dashboard/setupsmtp' />
                         <div className='bg-white rounded-lg py-2 px-3'>
                             <button onClick={signOut}>Sign out</button>
                         </div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createContext } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { Navigate } from "react-router-dom";
+
 
 
 export const DataContext = createContext()
@@ -24,6 +24,7 @@ const DataProvider = ({ children }) => {
     })
 
 
+    
     const [loading, setLoading] = useState(false)
 
     const authClick = async (isLogin = false) => {
@@ -41,8 +42,8 @@ const DataProvider = ({ children }) => {
             })
             toast.dismiss()
             console.log(data)
-            // isLogin? localStorage.setItem("token", JSON.stringify(data.data.token)) : toast.success("Log in now") 
-            setAuthToken(data.data.token)
+            isLogin? localStorage.setItem("token", JSON.stringify(data.data.token)) : toast.success("Log in now") 
+            isLogin && setAuthToken(data.data.token)
             console.log("Successfully User created✅", data)
             isLogin ? toast.success("Logged in successfull") : toast.success("Registration successfull")
         } catch (error) {
@@ -68,6 +69,25 @@ const DataProvider = ({ children }) => {
 
     }
 
+    const setupSMTP = async(smtpData) => {
+        console.log(smtpData)
+
+        try {
+            const data = await axios.post('http://localhost:4000/api/v2/setup-smt', smtpData, {
+                headers: {
+                    'Content-Type': 'application/json',
+
+                }
+            })
+
+            toast.success("SMTP Setup Successfully")
+        } catch (error) {
+            console.error(error)
+            toast.error("Failed to setup SMTP Data")
+        }
+
+    }
+
     const signOut = () => {
         
         setAuthToken(null)
@@ -87,7 +107,8 @@ const DataProvider = ({ children }) => {
         loading,
         setLoading,
         authToken,
-        signOut
+        signOut,
+        setupSMTP
     }
 
     return (
