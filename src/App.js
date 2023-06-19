@@ -7,6 +7,7 @@ import { Navbar } from './components/common/Navbar';
 import  PrivateRoute  from './components/Auth/PrivateRoute';
 import { Dashboard } from './Pages/Dashboard';
 import { SetupSmtp } from './components/Dashboard/SetupSmtp';
+import { CreateEmailList } from './components/Dashboard/CreateEmailList';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
 
 
             <Route path='dashboard/setupsmtp' element={<SetupSmtp/>}/>
+            <Route path='dashboard/create-email-list' element={<CreateEmailList/>}/>
           </Route>
         </Routes>
 

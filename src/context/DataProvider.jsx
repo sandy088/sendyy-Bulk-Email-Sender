@@ -88,6 +88,21 @@ const DataProvider = ({ children }) => {
 
     }
 
+    const createEmailList = async(data)=>{
+        console.log(data)
+        try {
+            toast.loading("Creating Email List")
+            await axios.post('http://localhost:4000/api/v2/createEmailList', data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }})
+            toast.dismiss()
+            toast.success("Email List Created Successfully")
+        } catch (error) {
+            console.error("Error while creating Email List: ",error)
+        }
+    }
+
     const signOut = () => {
         
         setAuthToken(null)
@@ -108,7 +123,8 @@ const DataProvider = ({ children }) => {
         setLoading,
         authToken,
         signOut,
-        setupSMTP
+        setupSMTP,
+        createEmailList
     }
 
     return (

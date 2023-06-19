@@ -4,7 +4,7 @@ export const SideBarLinks = [
     {
         id: 1,
         title: "Setup SMTP",
-        path: '/setupsmtp',
+        path: 'dashboard/setupsmtp',
         icon: "HiServer"
     },
     {
@@ -16,7 +16,7 @@ export const SideBarLinks = [
     {
         id: 3,
         title: "Create E-mail List",
-        path: '/create-email-list',
+        path: 'dashboard/create-email-list',
         icon: "HiViewGridAdd"
     },
     {
