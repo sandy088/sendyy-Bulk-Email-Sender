@@ -10,7 +10,7 @@ export const SideBarLinks = [
     {
         id: 2,
         title: "Emails List",
-        path: '/emails-list',
+        path: 'dashboard/emails-list',
         icon: "HiMail"
     },
     {
