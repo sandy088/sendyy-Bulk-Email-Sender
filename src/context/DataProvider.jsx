@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createContext } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
@@ -17,6 +17,8 @@ const DataProvider = ({ children }) => {
         password: "",
         role: "User"
     })
+
+    const [emailsListNames, setEmailsListNames] = useState([])
 
     const [loginData, setLoginData] = useState({
         email: "",
@@ -88,6 +90,44 @@ const DataProvider = ({ children }) => {
 
     }
 
+    const createEmailList = async(data)=>{
+        console.log(data)
+        try {
+            toast.loading("Creating Email List")
+            await axios.post('http://localhost:4000/api/v2/createEmailList', data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }})
+            toast.dismiss()
+            toast.success("Email List Created Successfully")
+        } catch (error) {
+            console.error("Error while creating Email List: ",error)
+        }
+    }
+
+    const getEmailList= async() =>{
+        const data= {
+            token: authToken
+        }
+        console.log(authToken)
+        try {
+            toast.loading("Loading E-mail Lists")
+            const response = await axios.post('http://localhost:4000/api/v2/getEmailList',data,{headers: {
+                'Content-Type': 'application/json',
+            }})
+
+            setEmailsListNames(response.data.data)
+            console.log(response.data.data)
+            toast.dismiss()
+            toast.success("Email List Fetched Successfully")
+            
+        } catch (error) {
+            console.error("Error while Getting Email List Names: ",error)
+        }
+    }
+
+    
+
     const signOut = () => {
         
         setAuthToken(null)
@@ -108,7 +148,10 @@ const DataProvider = ({ children }) => {
         setLoading,
         authToken,
         signOut,
-        setupSMTP
+        setupSMTP,
+        createEmailList,
+        getEmailList,
+        emailsListNames
     }
 
     return (

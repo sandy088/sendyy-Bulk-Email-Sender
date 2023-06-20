@@ -49,7 +49,7 @@ exports.createEmailList = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: error
+            message: "Error occured here: ",error
         })
     }
 }
