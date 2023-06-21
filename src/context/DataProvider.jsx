@@ -112,7 +112,7 @@ const DataProvider = ({ children }) => {
         console.log(authToken)
         try {
             toast.loading("Loading E-mail Lists")
-            const response = await axios.post('http://localhost:4000/api/v2/getEmailList',data,{headers: {
+            const response = await axios.post('http://localhost:4000/api/v2/getEmailList', data, {headers: {
                 'Content-Type': 'application/json',
             }})
 
