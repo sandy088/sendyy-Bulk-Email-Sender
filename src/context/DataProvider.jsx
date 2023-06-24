@@ -29,6 +29,8 @@ const DataProvider = ({ children }) => {
     
     const [loading, setLoading] = useState(false)
 
+    const [mailContent, setMailContent] = useState('')
+
     const authClick = async (isLogin = false) => {
         console.log(isLogin)
         setLoading(true)
@@ -99,6 +101,7 @@ const DataProvider = ({ children }) => {
                     'Content-Type': 'application/json',
                 }})
             toast.dismiss()
+            getEmailList()
             toast.success("Email List Created Successfully")
         } catch (error) {
             console.error("Error while creating Email List: ",error)
@@ -112,7 +115,7 @@ const DataProvider = ({ children }) => {
         console.log(authToken)
         try {
             toast.loading("Loading E-mail Lists")
-            const response = await axios.post('http://localhost:4000/api/v2/getEmailList',data,{headers: {
+            const response = await axios.post('http://localhost:4000/api/v2/getEmailList', data, {headers: {
                 'Content-Type': 'application/json',
             }})
 
@@ -125,8 +128,6 @@ const DataProvider = ({ children }) => {
             console.error("Error while Getting Email List Names: ",error)
         }
     }
-
-    
 
     const signOut = () => {
         
@@ -151,7 +152,9 @@ const DataProvider = ({ children }) => {
         setupSMTP,
         createEmailList,
         getEmailList,
-        emailsListNames
+        emailsListNames,
+        mailContent,
+        setMailContent
     }
 
     return (

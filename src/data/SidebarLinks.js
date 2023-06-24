@@ -22,7 +22,7 @@ export const SideBarLinks = [
     {
         id: 4,
         title: "Send Mail",
-        path: '/setupsmtp',
+        path: 'dashboard/send-mail',
         icon: "HiOutlineLightningBolt"
     },
     {

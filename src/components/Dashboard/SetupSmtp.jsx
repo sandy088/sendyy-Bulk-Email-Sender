@@ -1,5 +1,7 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { DataContext } from '../../context/DataProvider'
+import { SuccessBanner } from '../core/Notify'
+import axios from 'axios'
 
 export const SetupSmtp = () => {
     const {setupSMTP,authToken} = useContext(DataContext)
@@ -10,6 +12,8 @@ export const SetupSmtp = () => {
         token: authToken
     })
 
+    const [smtpAlready, setSmtpAlready] = useState(null)
+
     const onChanngeHandler = (e) => {
      
         setSmtpData((prevData)=> ({
@@ -18,14 +22,36 @@ export const SetupSmtp = () => {
         }))
     }
 
+    const checkSMTP = async()=>{
+        const data ={
+            token: authToken
+        }
+        await axios.post('http://localhost:4000/api/v2/smtp-check',data,{
+            headers: {
+                'Content-Type': 'application/json',
+
+            }
+        }).then((data)=>{
+            console.log(data.data.data)
+            setSmtpAlready(data.data.data)
+            console.log("smtp fetched succesfuuly")}).catch((error)=>console.log("Error occured while fetching smtp details: ",error))
+    }
+    useEffect(()=>{
+        checkSMTP()
+    },[])
+
 
     return (
         <div className=''>
+           
 
             <div className=' lg:mt-[120px]'>
                 <h2 className=' text-4xl text-slate-50  text-center'>Setup SMTP</h2>
             </div>
-
+            { smtpAlready && <div className='w-[80%] mx-auto pt-6'>
+                <SuccessBanner/>
+            </div>}
+ 
             <div className=' lg:h-[40px]'>
 
             </div>

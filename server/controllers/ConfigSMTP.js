@@ -43,3 +43,33 @@ exports.setupSMTP = async (req, res) => {
         })
     }
 }
+
+exports.checkSMTP = async(req,res) =>{
+    try {
+        const userId = req.user.id
+        if(!userId){
+            return res.status(401).json({
+                success:false,
+                message: "User Verification failed"
+            })
+        }
+        let smtpsetup = await SMTPConfig.findOne({ userId: userId });
+
+        if(smtpsetup){
+            return res.status(200).json({
+                success:true,
+                data:true
+            })
+        }else{
+            return res.status(300).json({
+                success:false,
+                data:false
+            })
+        }
+    } catch (error) {
+        return res.status(500).json({
+            success:false,
+            message: "Error occured while checking for smtp setup exists: ", error
+        })
+    }
+}
