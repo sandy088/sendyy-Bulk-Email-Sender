@@ -29,6 +29,8 @@ const DataProvider = ({ children }) => {
     
     const [loading, setLoading] = useState(false)
 
+    const [mailContent, setMailContent] = useState('')
+
     const authClick = async (isLogin = false) => {
         console.log(isLogin)
         setLoading(true)
@@ -99,6 +101,7 @@ const DataProvider = ({ children }) => {
                     'Content-Type': 'application/json',
                 }})
             toast.dismiss()
+            getEmailList()
             toast.success("Email List Created Successfully")
         } catch (error) {
             console.error("Error while creating Email List: ",error)
@@ -126,8 +129,6 @@ const DataProvider = ({ children }) => {
         }
     }
 
-    
-
     const signOut = () => {
         
         setAuthToken(null)
@@ -151,7 +152,9 @@ const DataProvider = ({ children }) => {
         setupSMTP,
         createEmailList,
         getEmailList,
-        emailsListNames
+        emailsListNames,
+        mailContent,
+        setMailContent
     }
 
     return (

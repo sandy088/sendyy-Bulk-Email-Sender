@@ -13,9 +13,9 @@ export const EmailsList = () => {
         setSelectedOtion(e.target.value)
     }
 
-    useEffect(() => {
-        const emailsListName = getEmailList()
-    }, [])
+    // useEffect(() => {
+    //     const emailsListName = getEmailList()
+    // }, [])
 
     useEffect(() => {
         // Assuming getEmailList() returns the email list object based on the selectedOption value
