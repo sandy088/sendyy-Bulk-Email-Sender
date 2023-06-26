@@ -7,6 +7,7 @@ import { DataContext } from '../../context/DataProvider'
 import { IoSend } from 'react-icons/io5'
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
+import {CgProfile} from 'react-icons/cg'
 
 export const SendMail = () => {
 
@@ -82,7 +83,7 @@ export const SendMail = () => {
           </div>
 
           <div className=' px-4 py-2 flex gap-4 '>
-            <span className=' text-gray-400 font-semibold'>From:</span> <img src={profile} alt='email pic' width={30} height={20} /> <input placeholder='your Name' value={from} onChange={(e) => setFrom(e.target.value)} className=' pr-2 py-1 bg-transparent rounded-lg w-[95%]' />
+            <span className=' text-gray-400 font-semibold'>From:</span> <CgProfile className=' text-3xl'/> <input placeholder='your Name' value={from} onChange={(e) => setFrom(e.target.value)} className=' pr-2 py-1 bg-transparent rounded-lg w-[95%]' />
           </div>
           <div className='h-[0.5px] bg-slate-300 w-[95%] mx-auto'></div>
           <div className=' px-4 py-2 flex gap-4 justify-between'>

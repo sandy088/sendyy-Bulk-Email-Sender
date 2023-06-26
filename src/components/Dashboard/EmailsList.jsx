@@ -37,9 +37,9 @@ export const EmailsList = () => {
 
             <div className='flex justify-evenly w-full'>
                 {/* left side */}
-                <div className='relative px-6 py-6 bg-[#737373] lg:w-[300px] bg-opacity-60 rounded-xl h-fit z-10'>
+                <div className='relative px-6 py-6 bg-slate-800 lg:w-[300px] bg-opacity-60 rounded-xl h-fit z-10'>
                     <h2 className=' text-white text-[16px]'>Select Your Email List Name</h2>
-                    <select value={selectedOption} onChange={handleOptionChange} className=' rounded-lg bg-[#737373] text-white p-2 mt-4 w-full'>
+                    <select value={selectedOption} onChange={handleOptionChange} className=' rounded-lg bg-[#171e31] text-white p-2 mt-4 w-full'>
                     <option value=''>Select List</option>
                         {
                             emailsListNames.map((List) => {
@@ -53,12 +53,12 @@ export const EmailsList = () => {
 
                 {/* Right Side */}
 
-                <div className='relative px-6 py-6 bg-[#737373] bg-opacity-60 rounded-xl  w-[300px] h-[500px] z-10 '>
+                <div className='relative px-6 py-6 bg-slate-800 bg-opacity-60 rounded-xl  w-[300px] h-[500px] z-10 '>
                     <h2 className='text-white text-[18px] text-center'>Emails List</h2>
                     <div className='overflow-y-scroll max-h-full'>
-                        {selectedEmails.map((email, index) => (
-                            <div key={index} className=' text-gray-300 p-2 rounded-lg hover:bg-slate-800 italic text-[16px] flex gap-3 items-center my-2'> <HiOutlineMail className='text-[20px]'/> {email.length>20? email.substring(0, 20)+'...': email}</div>
-                        ))}
+                        {selectedEmails[0]? selectedEmails.map((email, index) => (
+                            <div key={index} className=' text-gray-300 p-2 rounded-lg hover:bg-slate-700 italic text-[16px] flex gap-3 items-center my-2'> <HiOutlineMail className='text-[20px]'/> {email.length>20? email.substring(0, 20)+'...': email}</div>
+                        )):<div className=' mt-6 flex h-full justify-center items-center text-white'>⚠️<p> No Email Lists are selected</p></div>}
                     </div>
                 </div>
 

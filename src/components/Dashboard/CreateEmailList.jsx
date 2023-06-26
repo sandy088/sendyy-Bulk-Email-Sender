@@ -49,12 +49,14 @@ export const CreateEmailList = () => {
         setEmailName(e.target.value)
     }
     return (
-        <div className='flex flex-col justify-center items-center h-screen text-white text-center'>
-            <h2>CSV File Upload Here</h2>
-            <div>
+        <div className='flex flex-col gap-4 justify-center items-center h-screen text-white text-center'>
+            <h2 className=' text-4xl mb-10'>CSV File Upload Here</h2>
+            <div className=' flex flex-col gap-3'>
 
-                <label> Enter Name of Email List
-                    <input placeholder='Email List Name' name='name' onChange={onChangeHandler}/>
+                <label className=' flex flex-col gap-3 text-start'> Enter Name of Email List
+                    <input placeholder='Email List Name' name='name' onChange={onChangeHandler}
+                    className=' rounded-lg bg-slate-800 p-2'
+                    />
                 </label>
                 <FileUpload onUpload={handleUpload} />
                 <button className=' bg-purple-800 text-white p-3 rounded-xl mt-3' onClick={uploadHandler}>Create E-mail List</button>
