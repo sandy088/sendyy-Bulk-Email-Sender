@@ -11,6 +11,7 @@ import subs from '../assets/homeImages/subscribers.png'
 import pgmail from '../assets/homeImages/pgmail.png'
 import inbox from '../assets/homeImages/inbox.png'
 import skyroket from '../assets/homeImages/skyroket.png'
+import { FooterFour } from '../components/common/Footer'
 
 export default function Homepage() {
     return (
@@ -148,8 +149,8 @@ export default function Homepage() {
                     </div>
                 </div>
                 <div className='lg:h-[80px]'></div>
-
-            </div>
+                
+            </div><FooterFour/>
         </div>
     )
 }

@@ -10,6 +10,9 @@ import { SetupSmtp } from './components/Dashboard/SetupSmtp';
 import { CreateEmailList } from './components/Dashboard/CreateEmailList';
 import { EmailsList } from './components/Dashboard/EmailsList';
 import { SendMail } from './components/Dashboard/SendMail';
+import { Pricing } from './Pages/Pricing';
+import { FooterFour } from './components/common/Footer';
+import { ErrorFour } from './Pages/NotFound';
 
 
 function App() {
@@ -33,6 +36,10 @@ function App() {
             <Route path='dashboard/emails-list' element={<EmailsList/>}/>
             <Route path='dashboard/send-mail' element={<SendMail/>}/>
           </Route>
+
+          <Route path='/pricing' element={<Pricing/>}/>
+
+          <Route path='*' element={<ErrorFour/>}/>
         </Routes>
 
         
