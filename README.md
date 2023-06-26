@@ -1,9 +1,13 @@
 # Sendyy
 
-Sendyy is a powerful bulk email sending application built with React.js, ContextAPI, Node.js, Express.js, MongoDB, Cloudinary, JWT Auth, and TailwindCSS.
+Sendyy is a powerful bulk email-sending application built with React.js, ContextAPI, Node.js, Express.js, MongoDB, Cloudinary, JWT Auth, and TailwindCSS.
 
 
-https://github.com/sandy088/sendyy-Bulk-Email-Sender/assets/90024312/a83c83d1-c639-4e31-9c20-6c9823ecb21c
+
+
+
+https://github.com/sandy088/sendyy-Bulk-Email-Sender/assets/90024312/43375cfa-e92a-4bd3-9b63-e5d3feb72f60
+
 
 
 ## Features
