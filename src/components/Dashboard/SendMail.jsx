@@ -37,7 +37,7 @@ export const SendMail = () => {
 
 
     
-    const sentData = axios.post('http://localhost:4000/api/v2/sendMail', data, {
+    const sentData = axios.post('https://bulk-email-sender-backend.onrender.com/api/v2/sendMail', data, {
       headers: {
         'Content-Type': 'application/json',
       }
@@ -64,13 +64,13 @@ export const SendMail = () => {
   }
   return (
     <div className=''>
-      <div className=' lg:h-[150px]'>
+      <div className='h-32 lg:h-[150px]'>
 
       </div>
 
       <div>
 
-        <div className='relative file:flex flex-col rounded-3xl bg-slate-200 gap-3 lg:w-[600px] mx-auto p-3 z-[10] shadow-custom'>
+        <div className='relative file:flex flex-col rounded-3xl bg-slate-200 gap-3 w-[80%] lg:w-[600px] mx-auto p-3 z-[10] shadow-custom'>
 
           {/* 1st part */}
           <div className='flex flex-row-reverse gap-3 pt-3'>
