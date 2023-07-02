@@ -35,7 +35,7 @@ export const EmailsList = () => {
             <h2 className=' text-white text-3xl mb-10'>Your Emails List</h2>
 
 
-            <div className='flex justify-evenly w-full'>
+            <div className='flex flex-wrap gap-4 justify-evenly w-full'>
                 {/* left side */}
                 <div className='relative px-6 py-6 bg-slate-800 lg:w-[300px] bg-opacity-60 rounded-xl h-fit z-10'>
                     <h2 className=' text-white text-[16px]'>Select Your Email List Name</h2>

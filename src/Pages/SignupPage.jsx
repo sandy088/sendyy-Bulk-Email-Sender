@@ -35,20 +35,20 @@ console.log(isLogin)
         </div>
 
         {/* for signupForm and side logo */}
-        <div className='flex gap-8 justify-between '>
-          {isLogin? <AuthForm isLogin={true}/>: <AuthForm isLogin={false}/>}
-          <div className='flex flex-col justify-end gap-5 items-center'>
-            <img src={logo} alt='security logo' loading='lazy' height={80} width={60} className=' animate-bounce' />
+<div className='flex flex-col lg:flex-row gap-8 justify-between'>
+  {isLogin ? <AuthForm isLogin={true} /> : <AuthForm isLogin={false} />}
+  <div className='flex flex-col justify-end gap-5 items-center lg:items-end'>
+    <img src={logo} alt='security logo' loading='lazy' height={80} width={60} className='hidden lg:block animate-bounce mx-auto' />
 
-            <button className={` flex items-center gap-2 rounded-lg  bg-[#7450BB] text-white px-4 py-2 hover:bg-[#4f3485]
+    <button className={`flex items-center gap-2 rounded-lg bg-[#7450BB] text-white px-4 py-2 hover:bg-[#4f3485]
              hover:text-white transition-color duration-150 relative z-[10]`} onClick={onClickHandler}>
-           {isLogin?'Login' : ' Signup Now'} 
-            <BsFillArrowRightCircleFill />
-        </button>
+      {isLogin ? 'Login' : 'Signup Now'}
+      <BsFillArrowRightCircleFill />
+    </button>
 
-          </div>
+  </div>
+</div>
 
-        </div>
 
         {/* third section */}
         <div className=' flex justify-center mt-6 '>
