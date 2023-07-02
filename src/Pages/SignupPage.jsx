@@ -9,7 +9,7 @@ import { DataContext } from '../context/DataProvider'
 import { toast } from 'react-hot-toast'
 
 export const AuthPage = ({isLogin = false}) => {
-  const { signupData, loginData, authClick } = useContext(DataContext)
+  const { signupData,  authClick } = useContext(DataContext)
 console.log(isLogin)
   const onClickHandler = () => {
     if(!isLogin && (signupData.name.length <= 6 ||signupData.email.length <= 6 || signupData.name.length <= 6) ){

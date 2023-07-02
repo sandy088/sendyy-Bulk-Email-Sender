@@ -35,7 +35,7 @@ const DataProvider = ({ children }) => {
         console.log(isLogin)
         setLoading(true)
         isLogin ? toast.loading("Logging In") : toast.loading("Registration in Progress")
-        const apiLink = isLogin ? 'http://localhost:4000/api/v2/login' : 'http://localhost:4000/api/v2/signup'
+        const apiLink = isLogin ? 'https://bulk-email-sender-backend.onrender.com/api/v2/login' : 'https://bulk-email-sender-backend.onrender.com/api/v2/signup'
         const authData = isLogin ? loginData : signupData
         try {
             const data = await axios.post(apiLink, authData, {
@@ -77,7 +77,7 @@ const DataProvider = ({ children }) => {
         console.log(smtpData)
 
         try {
-            const data = await axios.post('http://localhost:4000/api/v2/setup-smt', smtpData, {
+            const data = await axios.post('https://bulk-email-sender-backend.onrender.com/api/v2/setup-smt', smtpData, {
                 headers: {
                     'Content-Type': 'application/json',
 
@@ -96,7 +96,7 @@ const DataProvider = ({ children }) => {
         console.log(data)
         try {
             toast.loading("Creating Email List")
-            await axios.post('http://localhost:4000/api/v2/createEmailList', data, {
+            await axios.post('https://bulk-email-sender-backend.onrender.com/api/v2/createEmailList', data, {
                 headers: {
                     'Content-Type': 'application/json',
                 }})
@@ -115,7 +115,7 @@ const DataProvider = ({ children }) => {
         console.log(authToken)
         try {
             toast.loading("Loading E-mail Lists")
-            const response = await axios.post('http://localhost:4000/api/v2/getEmailList', data, {headers: {
+            const response = await axios.post('https://bulk-email-sender-backend.onrender.com/api/v2/getEmailList', data, {headers: {
                 'Content-Type': 'application/json',
             }})
 

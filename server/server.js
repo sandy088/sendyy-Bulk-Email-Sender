@@ -4,6 +4,7 @@ const router = require('./routes/auth')
 const cookieParser = require('cookie-parser');
 const cors = require('cors')
 
+require('dotenv').config()
 const app = express()
 app.use(cors())
 app.use(express.json())
@@ -16,6 +17,6 @@ dbConnect()
 
 
 
-app.listen(4000, ()=>{
+app.listen(process.env.PORT, ()=>{
     console.log("Server Started Successfully")
 })

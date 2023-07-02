@@ -26,7 +26,7 @@ export const SetupSmtp = () => {
         const data ={
             token: authToken
         }
-        await axios.post('http://localhost:4000/api/v2/smtp-check',data,{
+        await axios.post('https://bulk-email-sender-backend.onrender.com/api/v2/smtp-check',data,{
             headers: {
                 'Content-Type': 'application/json',
 

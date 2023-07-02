@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar } from '../components/common/Navbar'
+
 import { HighlightedText } from '../components/Homepage/HighlightedText'
 import { CTAButton } from '../components/core/CTAButton'
 import { EmailComponent } from '../components/Homepage/EmailComponent'
