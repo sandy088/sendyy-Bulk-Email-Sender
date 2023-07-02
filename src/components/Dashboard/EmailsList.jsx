@@ -6,7 +6,7 @@ export const EmailsList = () => {
 
     const [selectedOption, setSelectedOtion] = useState('')
     const [selectedEmails, setSelectedEmails] = useState([]);
-    const { getEmailList, emailsListNames } = useContext(DataContext)
+    const { emailsListNames } = useContext(DataContext)
 
     const handleOptionChange = (e) => {
         console.log(selectedOption)
