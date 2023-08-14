@@ -3,8 +3,9 @@ import { DataContext } from '../../context/DataProvider'
 import { Navigate } from 'react-router-dom'
 
 const AdminRoute = ({children}) => {
- const {authToken} = useContext(DataContext)
-  if( authToken !== null){
+ const {role} = useContext(DataContext)
+ console.log("Role from admin Route: ",role)
+  if( role == 'Admin'){
     return children
   }else{
     return <Navigate to="/login"/>
