@@ -13,6 +13,9 @@ import { SendMail } from './components/Dashboard/SendMail';
 import { Pricing } from './Pages/Pricing';
 import { ErrorFour } from './Pages/NotFound';
 import { SignUpThree } from './Pages/Signup';
+import AdminRoute from './components/Auth/AdminRoute';
+import { Admin } from './Pages/Admin/Admin';
+import { Stats } from './Pages/Admin/Stats';
 
 
 function App() {
@@ -37,6 +40,17 @@ function App() {
             <Route path='dashboard/create-email-list' element={<CreateEmailList/>}/>
             <Route path='dashboard/emails-list' element={<EmailsList/>}/>
             <Route path='dashboard/send-mail' element={<SendMail/>}/>
+          </Route>
+
+
+          <Route element={
+            <AdminRoute>
+              <Admin/>
+            </AdminRoute>
+          }>
+
+            <Route path='admin/stats' element={<Stats/>}></Route>
+
           </Route>
 
           <Route path='/pricing' element={<Pricing/>}/>
