@@ -10,6 +10,7 @@ export const DataContext = createContext()
 const DataProvider = ({ children }) => {
 
     const [authToken, setAuthToken] = useState(localStorage.getItem("token")? JSON.parse(localStorage.getItem("token")) : null)
+    const [role, setRole] = useState(false)
 
     const [signupData, setSignupData] = useState({
         name: "",
@@ -48,6 +49,7 @@ const DataProvider = ({ children }) => {
             console.log(data)
             isLogin? localStorage.setItem("token", JSON.stringify(data.data.token)) : toast.success("Log in now") 
             isLogin && setAuthToken(data.data.token)
+            isLogin && setRole(data.data.role)
             console.log("Successfully User created✅", data)
             isLogin ? toast.success("Logged in successfull") : toast.success("Registration successfull")
         } catch (error) {

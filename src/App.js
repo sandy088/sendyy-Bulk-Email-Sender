@@ -11,19 +11,21 @@ import { CreateEmailList } from './components/Dashboard/CreateEmailList';
 import { EmailsList } from './components/Dashboard/EmailsList';
 import { SendMail } from './components/Dashboard/SendMail';
 import { Pricing } from './Pages/Pricing';
-import { FooterFour } from './components/common/Footer';
 import { ErrorFour } from './Pages/NotFound';
+import { SignUpThree } from './Pages/Signup';
 
 
 function App() {
   return (
-    <div className="App overflow-x-hidden">
+    <div className="App overflow-x-hidden bg-[#101728] overflow-y-scroll h-screen">
       <Navbar />
 
         <Routes>
           <Route path='/' element={<Homepage />} />
-          <Route path='/signup' element={<AuthPage isLogin={false}/>} />
-          <Route path='/login' element={<AuthPage isLogin={true}/>} />
+          {/* <Route path='/signup' element={<AuthPage isLogin={false}/>} /> */}
+          <Route path='/signup' element={<SignUpThree/>} />
+          {/* <Route path='/login' element={<AuthPage isLogin={true}/>} /> */}
+          <Route path='/login' element={<SignUpThree isLogin={true}/>} />
           <Route element={
             <PrivateRoute>
               <Dashboard/>
