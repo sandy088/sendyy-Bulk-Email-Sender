@@ -10,7 +10,7 @@ export const DataContext = createContext()
 const DataProvider = ({ children }) => {
 
     const [authToken, setAuthToken] = useState(localStorage.getItem("token")? JSON.parse(localStorage.getItem("token")) : null)
-    const [role, setRole] = useState('Admin')
+    const [role, setRole] = useState(localStorage.getItem("role")? JSON.parse(localStorage.getItem("role")) : null)
 
     const [signupData, setSignupData] = useState({
         name: "",
@@ -36,7 +36,7 @@ const DataProvider = ({ children }) => {
         console.log(isLogin)
         setLoading(true)
         isLogin ? toast.loading("Logging In") : toast.loading("Registration in Progress")
-        const apiLink = isLogin ? 'https://bulk-email-sender-backend.onrender.com/api/v2/login' : 'https://bulk-email-sender-backend.onrender.com/api/v2/signup'
+        const apiLink = isLogin ? 'http://localhost:4000/api/v2/login' : 'https://bulk-email-sender-backend.onrender.com/api/v2/signup'
         const authData = isLogin ? loginData : signupData
         try {
             const data = await axios.post(apiLink, authData, {
@@ -49,9 +49,11 @@ const DataProvider = ({ children }) => {
             console.log(data)
             isLogin? localStorage.setItem("token", JSON.stringify(data.data.token)) : toast.success("Log in now") 
             isLogin && setAuthToken(data.data.token)
+            
             isLogin && setRole(data.data.role)
             isLogin? localStorage.setItem("role", JSON.stringify(data.data.role)) : console.log('login To Setup')
             console.log("Role is: ",role)
+
             console.log("Successfully User created✅", data)
             isLogin ? toast.success("Logged in successfull") : toast.success("Registration successfull")
         } catch (error) {
@@ -158,7 +160,8 @@ const DataProvider = ({ children }) => {
         getEmailList,
         emailsListNames,
         mailContent,
-        setMailContent
+        setMailContent,
+        role
     }
 
     return (
