@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 const User = require('../models/User')
 const { mailSender } = require('../utils/mailSender')
 
+let totalEmailsSent = 0
+
 exports.createEmailList = async (req, res) => {
     try {
         //fetch data
@@ -173,11 +175,27 @@ exports.sendEmailToList = async (req, res) => {
             })
         }
 
+        totalEmailsSent++;
         return res.status(200).json({
             success: true,
             message: "Email Sent Successfully✅"
         })
 
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
+
+
+exports.totalEmailsSent = (req,res)=>{
+    try {
+        return res.status(200).json({
+            success: true,
+            totalEmails: totalEmailsSent
+        })
     } catch (error) {
         return res.status(500).json({
             success: false,

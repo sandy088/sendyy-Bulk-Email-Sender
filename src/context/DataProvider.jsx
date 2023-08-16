@@ -36,7 +36,7 @@ const DataProvider = ({ children }) => {
         console.log(isLogin)
         setLoading(true)
         isLogin ? toast.loading("Logging In") : toast.loading("Registration in Progress")
-        const apiLink = isLogin ? 'https://bulk-email-sender-backend.onrender.com/api/v2/login' : 'https://bulk-email-sender-backend.onrender.com/api/v2/signup'
+        const apiLink = isLogin ? 'http://localhost:4000/api/v2/login' : 'https://bulk-email-sender-backend.onrender.com/api/v2/signup'
         const authData = isLogin ? loginData : signupData
         try {
             const data = await axios.post(apiLink, authData, {
