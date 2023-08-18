@@ -16,6 +16,7 @@ import { SignUpThree } from './Pages/Signup';
 import AdminRoute from './components/Auth/AdminRoute';
 import { Admin } from './Pages/Admin/Admin';
 import { Stats } from './Pages/Admin/Stats';
+import { Statsdash } from './components/Dashboard/Statsdash';
 
 
 function App() {
@@ -34,8 +35,7 @@ function App() {
               <Dashboard/>
             </PrivateRoute>
           }>
-
-
+            <Route path='dashboard/stats' element={<Statsdash/>}/>
             <Route path='dashboard/setupsmtp' element={<SetupSmtp/>}/>
             <Route path='dashboard/create-email-list' element={<CreateEmailList/>}/>
             <Route path='dashboard/emails-list' element={<EmailsList/>}/>

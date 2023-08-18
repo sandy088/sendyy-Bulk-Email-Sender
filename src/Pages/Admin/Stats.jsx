@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Cards } from '../../components/Admin/Cards'
 import axios from 'axios'
 import { DataContext } from '../../context/DataProvider'
+import { LinesChart } from '../../components/Dashboard/LinesChart'
 
 export const Stats = () => {
   const { authToken } = useContext(DataContext)
@@ -71,6 +72,9 @@ export const Stats = () => {
           <Cards icon={'emailsList'} text={'Total Email Lists'} value={emailLists}/>
         </div>
 
+        <div className=' my-10'>
+            <LinesChart/>
+        </div>
 
       </div>
     </div>

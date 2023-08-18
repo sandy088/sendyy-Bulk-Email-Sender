@@ -2,6 +2,12 @@
 
 export const SideBarLinks = [
     {
+        id: 6,
+        title: "Email Stats",
+        path: 'dashboard/stats',
+        icon: "HiOutlineSpeakerphone"
+    },
+    {
         id: 1,
         title: "Setup SMTP",
         path: 'dashboard/setupsmtp',
