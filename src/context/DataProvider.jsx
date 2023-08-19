@@ -11,6 +11,8 @@ const DataProvider = ({ children }) => {
 
     const [authToken, setAuthToken] = useState(localStorage.getItem("token")? JSON.parse(localStorage.getItem("token")) : null)
     const [role, setRole] = useState(localStorage.getItem("role")? JSON.parse(localStorage.getItem("role")) : null)
+    const [userEmailsSent, setUserEmailSent] = useState(0)
+    const [userEmaillistCount, setUserEmaillistCount] = useState(0)
 
     const [signupData, setSignupData] = useState({
         name: "",
@@ -80,6 +82,7 @@ const DataProvider = ({ children }) => {
     }
 
     const setupSMTP = async(smtpData) => {
+
         console.log(smtpData)
 
         try {
@@ -126,7 +129,9 @@ const DataProvider = ({ children }) => {
             }})
 
             setEmailsListNames(response.data.data)
-            console.log(response.data.data)
+            setUserEmailSent(response.data.emailsent)
+            setUserEmaillistCount(response.data.totalLists)
+            console.log(response.data)
             toast.dismiss()
             toast.success("Email List Fetched Successfully")
             
@@ -161,7 +166,10 @@ const DataProvider = ({ children }) => {
         emailsListNames,
         mailContent,
         setMailContent,
-        role
+        role,
+        userEmailsSent,
+        setUserEmailSent,
+        userEmaillistCount
     }
 
     return (

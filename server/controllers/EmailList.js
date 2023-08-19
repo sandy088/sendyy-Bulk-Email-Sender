@@ -71,10 +71,15 @@ exports.getEmailList = async (req, res) => {
         }
 
         const emailsListsData = user.lists
+        const emailListCount = emailsListsData.length;
+        const emailSent = user.emailsSent
+        console.log(user)
 
         return res.status(200).json({
             success: true,
-            data: emailsListsData
+            data: emailsListsData,
+            emailsent:emailSent,
+            totalLists: emailListCount
         })
     } catch (error) {
         return res.status(500).json({
@@ -175,7 +180,18 @@ exports.sendEmailToList = async (req, res) => {
             })
         }
 
+        
         totalEmailsSent++;
+        console.log("Hey is it workingg")
+        if (user.emailsSent === undefined) {
+            console.log("Here I am ", user.emailsSent)
+            user.emailsSent = 1; // Set the default value if undefined
+        } else {
+            console.log("working File", user.emailsSent)
+            user.emailsSent++; // Increment if defined
+            await user.save();
+        }
+
         return res.status(200).json({
             success: true,
             message: "Email Sent Successfully✅"

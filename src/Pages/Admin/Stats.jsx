@@ -62,6 +62,7 @@ export const Stats = () => {
     totalEmails()
     totalEmailLists()
   }, [])
+
   return (
     <div className=' w-screen py-8'>
       <div className=' w-11/12 mx-auto'>
@@ -72,10 +73,15 @@ export const Stats = () => {
           <Cards icon={'emailsList'} text={'Total Email Lists'} value={emailLists}/>
         </div>
 
-        <div className=' my-10'>
-            <LinesChart/>
+        <div className=' my-20 flex justify-around w-[1200px]'>
+            <LinesChart number={emailLists} totalNumber={5000} label1='Email Lists Created' label2='Email Lists limit'/>
+            <LinesChart number={tSentEmails} totalNumber={5000} label1='Total Email Sent' label2='Email Sent limit'/>
+           
         </div>
-
+        <div className=' my-20 w-[1200px]'>
+          <LinesChart number={allUsers} totalNumber={allUsers} label1='Total Users' label2=''/>
+        </div>
+        
       </div>
     </div>
   )

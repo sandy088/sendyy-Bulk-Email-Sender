@@ -14,6 +14,10 @@ export const SetupSmtp = () => {
 
     const [smtpAlready, setSmtpAlready] = useState(null)
 
+    const onClickHandler = (e)=>{
+        e.preventDefault()
+        setupSMTP(smtpData)
+    }
     const onChanngeHandler = (e) => {
 
         setSmtpData((prevData) => ({
@@ -97,7 +101,7 @@ export const SetupSmtp = () => {
 
                         <button
                             className='flex bg-[#7450BB] rounded-lg px-3 py-2 justify-center mt-4 text-white font-semibold'
-                            onClick={() => setupSMTP(smtpData)}
+                            onClick={onClickHandler}
                         >
                             Setup
                         </button>
