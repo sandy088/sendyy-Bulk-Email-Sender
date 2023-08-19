@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
       },
+      emailsSent : {
+        type: Number,
+        default: 0
+      },
       templates: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'EmailTemplate'
