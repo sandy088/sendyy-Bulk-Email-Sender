@@ -1,7 +1,26 @@
-import React from 'react'
-import { BarChart, Wallet, Newspaper, BellRing, Paperclip, Brush, Wrench } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
+import { BarChart, Newspaper, BellRing, Paperclip, Users, BarChart2 } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom';
 
 export function Sidebar() {
+
+  const location = useLocation();
+    const routePath = location.pathname;
+    const [current, setCurrent]= useState('')
+
+    const getLastSegment = () => {
+      const segments = routePath.split('/',-1);
+      setCurrent("Admin/"+ segments[segments.length - 1])
+      // Retrieve the value before the last '/'
+  };
+
+  useEffect(()=>{
+
+    getLastSegment()
+    console.log(current)
+    
+},[routePath])
+
   return (
     <aside className="flex h-screen w-64 flex-col overflow-y-auto border-gray-800 border-r bg-black px-5 py-8">
       <a href="#">
@@ -22,62 +41,54 @@ export function Sidebar() {
         <nav className="-mx-3 space-y-6 ">
           <div className="space-y-3 ">
             <label className="px-3 text-xs font-semibold uppercase text-white">analytics</label>
-            <a
+            <Link to={'admin/stats'}
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-50 hover:text-gray-700"
-              href="#"
+              
             >
+              
               <BarChart className="h-5 w-5" aria-hidden="true" />
               <span className="mx-2 text-sm font-medium">Dashboard</span>
-            </a>
-            <a
+            </Link>
+            <Link to={'admin/users'}
+              className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
+              
+            >
+              <Users className="h-5 w-5" aria-hidden="true" />
+              <span className="mx-2 text-sm font-medium">Users</span>
+            </Link>
+
+            <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
               href="#"
             >
-              <Wallet className="h-5 w-5" aria-hidden="true" />
-              <span className="mx-2 text-sm font-medium">Sales</span>
-            </a>
+              <BarChart2 className="h-5 w-5" aria-hidden="true" />
+              <span className="mx-2 text-sm font-medium">Top Users</span>
+            </Link>
           </div>
+          
           <div className="space-y-3 ">
             <label className="px-3 text-xs font-semibold uppercase text-white">content</label>
-            <a
+            <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
               href="#"
             >
               <Newspaper className="h-5 w-5" aria-hidden="true" />
               <span className="mx-2 text-sm font-medium">Blogs</span>
-            </a>
-            <a
+            </Link>
+            <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
               href="#"
             >
               <BellRing className="h-5 w-5" aria-hidden="true" />
               <span className="mx-2 text-sm font-medium">Notifications</span>
-            </a>
-            <a
+            </Link>
+            <Link
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
               href="#"
             >
               <Paperclip className="h-5 w-5" aria-hidden="true" />
               <span className="mx-2 text-sm font-medium">Checklists</span>
-            </a>
-          </div>
-
-          <div className="space-y-3 ">
-            <label className="px-3 text-xs font-semibold uppercase text-white">Customization</label>
-            <a
-              className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
-              href="#"
-            >
-              <Brush className="h-5 w-5" aria-hidden="true" />
-              <span className="mx-2 text-sm font-medium">Themes</span>
-            </a>
-            <a
-              className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
-              href="#"
-            >
-              <Wrench className="h-5 w-5" aria-hidden="true" />
-              <span className="mx-2 text-sm font-medium">Setting</span>
-            </a>
+            </Link>
           </div>
         </nav>
       </div>
