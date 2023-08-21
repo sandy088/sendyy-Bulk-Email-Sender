@@ -219,3 +219,37 @@ exports.totalEmailsSent = (req,res)=>{
         })
     }
 }
+
+// Update the getAllUsers function
+exports.getAllUsers = async (req, res) => {
+    try {
+      const page = parseInt(req.query.page) || 1; // Get the page number from query parameter
+      const limit = parseInt(req.query.limit) || 10; // Set the number of users per page
+  
+      const startIndex = (page - 1) * limit;
+      const endIndex = page * limit;
+  
+      // Fetch users with pagination
+      const users = await User.find()
+        
+        .populate('lists')
+        .skip(startIndex)
+        .limit(limit);
+  
+      const totalUsers = await User.countDocuments();
+  
+      const response = {
+        data: users,
+        currentPage: page,
+        totalPages: Math.ceil(totalUsers / limit)
+      };
+  
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: error.message
+      });
+    }
+  };
+  

@@ -17,6 +17,7 @@ import AdminRoute from './components/Auth/AdminRoute';
 import { Admin } from './Pages/Admin/Admin';
 import { Stats } from './Pages/Admin/Stats';
 import { Statsdash } from './components/Dashboard/Statsdash';
+import { Users } from './Pages/Admin/Users';
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
           }>
 
             <Route path='admin/stats' element={<Stats/>}></Route>
+            <Route path='admin/users' element={<Users/>}></Route>
 
           </Route>
 
