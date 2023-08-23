@@ -18,6 +18,7 @@ import { Admin } from './Pages/Admin/Admin';
 import { Stats } from './Pages/Admin/Stats';
 import { Statsdash } from './components/Dashboard/Statsdash';
 import { Users } from './Pages/Admin/Users';
+import { TopUsers } from './Pages/Admin/TopUsers';
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
 
             <Route path='admin/stats' element={<Stats/>}></Route>
             <Route path='admin/users' element={<Users/>}></Route>
+            <Route path='admin/top-users' element={<TopUsers/>}></Route>
 
           </Route>
 

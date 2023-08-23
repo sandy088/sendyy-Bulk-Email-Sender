@@ -253,3 +253,35 @@ exports.getAllUsers = async (req, res) => {
     }
   };
   
+
+  exports.getTopUsers = async (req, res) => {
+    try {
+      const page = parseInt(req.query.page) || 1; // Get the page number from query parameter
+      const limit = parseInt(req.query.limit) || 5; // Set the number of users per page
+  
+      const startIndex = (page - 1) * limit;
+      const endIndex = page * limit;
+  
+      // Fetch and sort users by emailsSent in descending order
+      const users = await User.find()
+        .sort({ emailsSent: -1 }) // Sort by emailsSent in descending order
+        .skip(startIndex)
+        .limit(limit);
+  
+      const totalUsers = await User.countDocuments();
+  
+      const response = {
+        data: users,
+        currentPage: page,
+        totalPages: Math.ceil(totalUsers / limit)
+      };
+  
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: error.message
+      });
+    }
+  };
+  
