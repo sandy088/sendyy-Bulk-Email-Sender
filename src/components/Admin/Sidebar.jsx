@@ -58,8 +58,8 @@ export function Sidebar() {
             </Link>
 
             <Link
+            to={'admin/top-users'}
               className="flex transform items-center rounded-lg px-3 py-2 text-gray-200 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
-              href="#"
             >
               <BarChart2 className="h-5 w-5" aria-hidden="true" />
               <span className="mx-2 text-sm font-medium">Top Users</span>

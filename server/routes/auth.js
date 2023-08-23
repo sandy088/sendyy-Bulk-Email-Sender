@@ -3,7 +3,7 @@ const router = express.Router()
 
 const {signup, login} = require('../controllers/Auth')
 const{auth, isAdmin} = require('../middlewares/authMiddle')
-const {createEmailList, getEmailList,sendEmailToList,deleteEmailList, totalEmailsSent, getAllUsers } = require('../controllers/EmailList')
+const {createEmailList, getEmailList,sendEmailToList,deleteEmailList, totalEmailsSent, getAllUsers, getTopUsers } = require('../controllers/EmailList')
 const {setupSMTP, checkSMTP} = require('../controllers/ConfigSMTP')
 const { totalUsers, totalEmailLists } = require('../controllers/Adashboard')
 
@@ -29,5 +29,6 @@ router.post('/admin/total-users', auth, isAdmin, totalUsers)
 router.post('/admin/total-emails-sent', auth, isAdmin, totalEmailsSent)
 router.post('/admin/total-emails-lists', auth, isAdmin, totalEmailLists)
 router.get('/admin/all-users',auth, isAdmin, getAllUsers)
+router.get('/admin/get-top-users',auth, isAdmin, getTopUsers)
 
 module.exports = router
