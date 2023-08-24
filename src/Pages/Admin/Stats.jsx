@@ -6,10 +6,8 @@ import { DataContext } from '../../context/DataProvider'
 import { LinesChart } from '../../components/Dashboard/LinesChart'
 
 export const Stats = () => {
-  const { authToken } = useContext(DataContext)
-  const [allUsers, setAllUsers] = useState(0)
-  const [tSentEmails, setTotalEmails] = useState(0)
-  const [emailLists, setEmailLists] = useState(0)
+  const { authToken,allUsers,setAllUsers, tSentEmails, setTotalEmails, emailLists, setEmailLists  } = useContext(DataContext)
+  
 
 
 
