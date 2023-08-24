@@ -4,13 +4,14 @@ import axios from 'axios';
 import { DataContext } from '../../context/DataProvider';
 import { BarChart } from 'lucide-react';
 import { Loader } from '../../components/common/Loader';
+import { StatsCard } from '../../components/Admin/StatsCard';
 
 export const TopUsers = () => {
 
     const [users, setUsers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const { authToken } = useContext(DataContext)
+    const { authToken, allUsers,tSentEmails,  emailLists } = useContext(DataContext)
     const [isLoading, setLoading] = useState(false)
 
     const sentinelRef = useRef(null);
@@ -83,14 +84,18 @@ export const TopUsers = () => {
             
     };
     return (
-        <div className=' flex'>
-            <div>
+        <div className=' flex justify-around'>
+            <div className=' my-20 grid grid-cols-2 gap-6'>
                 {/* Stats will be here */}
+                <StatsCard headline={'Total Mails Sent'} value={tSentEmails} isTrending={true}/>
+                <StatsCard headline={'Total Users'} value={allUsers} ispie={true}/>
+                <StatsCard headline={'Total Email Lists'} value={emailLists} issend={true}/>
+               
             </div>
-            <div className=' bg-black w-1/3 rounded-3xl py-4 mx-auto my-20'>
+            <div className=' bg-black w-1/3 min-w-fit rounded-3xl py-4 my-20'>
                 <div className=' text-white flex items-end gap-4 mx-6 mb-6'>
                     <p className=' text-white font-bold text-4xl'>
-                        Top Users
+                        Top 5 Users
                     </p>
                     <BarChart size={'40px'} />
                 </div>
@@ -101,13 +106,13 @@ export const TopUsers = () => {
                     })
                 }
 
-                <div className=' my-3 flex px-7'>
+                {/* <div className=' my-3 flex px-7'>
                     <button className='relative w-full  p-2 px-3 bg-gray-100 text-black text-center rounded-xl hover:bg-black hover:text-white hover:scale-105 transition-all duration-200' onClick={fetchMoreUsers}>
-                       Load more
+                           Load more
                         
                         </button>
 
-                </div>
+                </div> */}
 
             </div>
         </div>

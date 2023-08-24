@@ -14,6 +14,10 @@ const DataProvider = ({ children }) => {
     const [userEmailsSent, setUserEmailSent] = useState(0)
     const [userEmaillistCount, setUserEmaillistCount] = useState(0)
 
+    const [allUsers, setAllUsers] = useState(0)
+    const [tSentEmails, setTotalEmails] = useState(0)
+    const [emailLists, setEmailLists] = useState(0)
+
     const [signupData, setSignupData] = useState({
         name: "",
         email: "",
@@ -169,7 +173,14 @@ const DataProvider = ({ children }) => {
         role,
         userEmailsSent,
         setUserEmailSent,
-        userEmaillistCount
+        userEmaillistCount,
+        allUsers, 
+        setAllUsers,
+        tSentEmails, 
+        setTotalEmails,
+        emailLists, 
+        setEmailLists
+
     }
 
     return (
