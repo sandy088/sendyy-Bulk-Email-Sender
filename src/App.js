@@ -19,6 +19,7 @@ import { Stats } from './Pages/Admin/Stats';
 import { Statsdash } from './components/Dashboard/Statsdash';
 import { Users } from './Pages/Admin/Users';
 import { TopUsers } from './Pages/Admin/TopUsers';
+import { ContactPage } from './Pages/ContactUs';
 
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
           </Route>
 
           <Route path='/pricing' element={<Pricing/>}/>
+          <Route path='/contact-us' element={<ContactPage/>}/>
 
           <Route path='*' element={<ErrorFour/>}/>
         </Routes>
