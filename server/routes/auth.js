@@ -5,7 +5,7 @@ const {signup, login} = require('../controllers/Auth')
 const{auth, isAdmin} = require('../middlewares/authMiddle')
 const {createEmailList, getEmailList,sendEmailToList,deleteEmailList, totalEmailsSent, getAllUsers, getTopUsers } = require('../controllers/EmailList')
 const {setupSMTP, checkSMTP} = require('../controllers/ConfigSMTP')
-const { totalUsers, totalEmailLists } = require('../controllers/Adashboard')
+const { totalUsers, totalEmailLists, contactUsController } = require('../controllers/Adashboard')
 
 router.post('/signup', signup)
 router.post('/login',login)
@@ -15,6 +15,7 @@ router.post('/sendMail',auth, sendEmailToList)
 router.delete('/deletemail',auth, deleteEmailList)
 router.post('/setup-smt',auth, setupSMTP)
 router.post('/smtp-check',auth, checkSMTP)
+router.post('/contact-us', contactUsController)
 
 
 
