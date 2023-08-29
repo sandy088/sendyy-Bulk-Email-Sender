@@ -34,7 +34,7 @@ export const SideBarLinks = [
     {
         id: 5,
         title: "How to use?",
-        path: '/how-to-use',
+        path: 'dashboard/how-to-use',
         icon: 'HiQuestionMarkCircle'
     },
    

@@ -2,7 +2,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Homepage from './Pages/Homepage';
-import {AuthPage}from './Pages/SignupPage';
 import { Navbar } from './components/common/Navbar';
 import  PrivateRoute  from './components/Auth/PrivateRoute';
 import { Dashboard } from './Pages/Dashboard';
@@ -20,6 +19,8 @@ import { Statsdash } from './components/Dashboard/Statsdash';
 import { Users } from './Pages/Admin/Users';
 import { TopUsers } from './Pages/Admin/TopUsers';
 import { ContactPage } from './Pages/ContactUs';
+import { MacbookPro } from './Pages/How to Page/Howto';
+import { Howto2 } from './Pages/How to Page/Howto2';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
             <Route path='dashboard/create-email-list' element={<CreateEmailList/>}/>
             <Route path='dashboard/emails-list' element={<EmailsList/>}/>
             <Route path='dashboard/send-mail' element={<SendMail/>}/>
+            <Route path= 'dashboard/how-to-use' element={<Howto2/>}/>
           </Route>
 
 
@@ -60,6 +62,7 @@ function App() {
 
           <Route path='/pricing' element={<Pricing/>}/>
           <Route path='/contact-us' element={<ContactPage/>}/>
+          <Route path= '/how-to-use' element={<Howto2/>}/>
 
           <Route path='*' element={<ErrorFour/>}/>
         </Routes>
