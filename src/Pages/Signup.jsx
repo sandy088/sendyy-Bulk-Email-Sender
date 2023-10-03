@@ -2,14 +2,14 @@ import React, { useContext } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { DataContext } from '../context/DataProvider'
 import { toast } from 'react-hot-toast'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../assets/Logos/SendyyLogos.png'
 
 export function SignUpThree({ isLogin = false }) {
-
+    const navigate = useNavigate()
 
     const { onChangeHandler } = useContext(DataContext)
-    const { signupData, authClick } = useContext(DataContext)
+    const { signupData, authClick, loading } = useContext(DataContext)
     console.log(isLogin)
     const onClickHandler = () => {
         if (!isLogin && (signupData.name.length <= 6 || signupData.email.length <= 6 || signupData.name.length <= 6)) {
@@ -21,6 +21,8 @@ export function SignUpThree({ isLogin = false }) {
         } else {
             isLogin ? authClick(isLogin = true) : authClick()
         }
+
+        
     }
 
 
