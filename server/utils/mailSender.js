@@ -18,6 +18,7 @@ exports.mailSender = async(from,emails,subject,body,host,user,pass) => {console.
         let info = await transporter.sendMail({
             from: from,
             to: emails,
+            sender: from,
             subject: `${subject}`,
             html: `${body}`
         })

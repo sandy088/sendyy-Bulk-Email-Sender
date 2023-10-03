@@ -64,6 +64,7 @@ const DataProvider = ({ children }) => {
             isLogin ? toast.success("Logged in successfull") : toast.success("Registration successfull")
         } catch (error) {
             console.log(error)
+            toast.dismiss()
             toast.error("Error while Signing Up")
         }
 
@@ -140,6 +141,7 @@ const DataProvider = ({ children }) => {
             toast.success("Email List Fetched Successfully")
             
         } catch (error) {
+            toast.dismiss()
             console.error("Error while Getting Email List Names: ",error)
         }
     }
