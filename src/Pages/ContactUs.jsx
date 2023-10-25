@@ -6,6 +6,7 @@ import { FooterFour } from '../components/common/Footer'
 import axios from 'axios'
 import { DataContext } from '../context/DataProvider'
 import { toast } from 'react-hot-toast'
+import { Footer } from '../components/common/Footer2'
 
 
 export function ContactPage() {
@@ -181,7 +182,7 @@ export function ContactPage() {
       
       {/* footer */}
       
-      <FooterFour/>
+      <Footer/>
     </div>
   )
 }

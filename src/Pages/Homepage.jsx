@@ -12,6 +12,7 @@ import pgmail from '../assets/homeImages/pgmail.png'
 import inbox from '../assets/homeImages/inbox.png'
 import skyroket from '../assets/homeImages/skyroket.png'
 import { FooterFour } from '../components/common/Footer'
+import { Footer } from '../components/common/Footer2'
 
 export default function Homepage() {
     return (
@@ -152,7 +153,7 @@ export default function Homepage() {
                 <div className="h-20 lg:h-20"></div>
 
 
-            </div><FooterFour />
+            </div><Footer />
         </div>
     )
 }
