@@ -36,3 +36,109 @@
     transform: rotate(360deg);
   }
 } */
+
+
+.spinner {
+  width: 11.2px;
+  height: 11.2px;
+  animation: spinner-z355kx 1s infinite linear;
+  border-radius: 11.2px;
+  box-shadow: 28px 0px 0 0 #474bff, 17.4px 21.8px 0 0 #474bff, -6.2px 27.2px 0 0 #474bff, -25.2px 12px 0 0 #474bff, -25.2px -12px 0 0 #474bff, -6.2px -27.2px 0 0 #474bff, 17.4px -21.8px 0 0 #474bff;
+}
+
+@keyframes spinner-z355kx {
+  to {
+     transform: rotate(360deg);
+  }
+}
+
+
+.gradient-text {
+  font-size: 24px;
+  background: linear-gradient(45deg, #ff9900, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+@import url("https://fonts.googleapis.com/css?family=Raleway:400");
+
+* {
+	box-sizing: border-box;
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 90deg;
+  inherits: true;
+}
+
+@property --gradX {
+  syntax: '<percentage>';
+  initial-value: 50%;
+  inherits: true;
+}
+
+@property --gradY {
+  syntax: '<percentage>';
+  initial-value: 0%;
+  inherits: true;
+}
+
+
+
+/* p {
+	margin: 0;
+}
+
+:root {
+	--d: 2500ms;
+	--angle: 90deg;
+	--gradX: 100%;
+	--gradY: 50%;
+	--c1: rgba(168, 239, 255, 1);
+	--c2: rgba(168, 239, 255, 0.1);
+}
+
+.wrapper {
+	min-width: min(40rem, 100%);
+} */
+
+.check {
+  /* position: relative;
+  margin: 300px auto 0;
+  width: 500px;
+  height: 250px;
+  background: linear-gradient(0deg, #000, #272727); */
+}
+
+.check:before, .check:after {
+  content: '';
+  position: absolute;
+  
+  left: -2px;
+  top: -2px;
+  background: linear-gradient(45deg, #9b37ff, #000, #5d00ff,#000, #000);
+  background-size: 400%;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  z-index: -1;
+  animation: steam 20s linear infinite;
+  border-radius: 18px;
+}
+
+@keyframes steam {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.check:after {
+  filter: blur(0px);
+}

@@ -5,6 +5,8 @@ const mongoose = require('mongoose')
 const User = require('../models/User')
 const { mailSender } = require('../utils/mailSender')
 
+let totalEmailsSent = 0
+
 exports.createEmailList = async (req, res) => {
     try {
         //fetch data
@@ -69,10 +71,15 @@ exports.getEmailList = async (req, res) => {
         }
 
         const emailsListsData = user.lists
+        const emailListCount = emailsListsData.length;
+        const emailSent = user.emailsSent
+        console.log(user)
 
         return res.status(200).json({
             success: true,
-            data: emailsListsData
+            data: emailsListsData,
+            emailsent:emailSent,
+            totalLists: emailListCount
         })
     } catch (error) {
         return res.status(500).json({
@@ -173,6 +180,18 @@ exports.sendEmailToList = async (req, res) => {
             })
         }
 
+        
+        totalEmailsSent++;
+        console.log("Hey is it workingg")
+        if (user.emailsSent === undefined) {
+            console.log("Here I am ", user.emailsSent)
+            user.emailsSent = 1; // Set the default value if undefined
+        } else {
+            console.log("working File", user.emailsSent)
+            user.emailsSent++; // Increment if defined
+            await user.save();
+        }
+
         return res.status(200).json({
             success: true,
             message: "Email Sent Successfully✅"
@@ -185,3 +204,84 @@ exports.sendEmailToList = async (req, res) => {
         })
     }
 }
+
+
+exports.totalEmailsSent = (req,res)=>{
+    try {
+        return res.status(200).json({
+            success: true,
+            totalEmails: totalEmailsSent
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
+
+// Update the getAllUsers function
+exports.getAllUsers = async (req, res) => {
+    try {
+      const page = parseInt(req.query.page) || 1; // Get the page number from query parameter
+      const limit = parseInt(req.query.limit) || 10; // Set the number of users per page
+  
+      const startIndex = (page - 1) * limit;
+      const endIndex = page * limit;
+  
+      // Fetch users with pagination
+      const users = await User.find()
+        
+        .populate('lists')
+        .skip(startIndex)
+        .limit(limit);
+  
+      const totalUsers = await User.countDocuments();
+  
+      const response = {
+        data: users,
+        currentPage: page,
+        totalPages: Math.ceil(totalUsers / limit)
+      };
+  
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: error.message
+      });
+    }
+  };
+  
+
+  exports.getTopUsers = async (req, res) => {
+    try {
+      const page = parseInt(req.query.page) || 1; // Get the page number from query parameter
+      const limit = parseInt(req.query.limit) || 5; // Set the number of users per page
+  
+      const startIndex = (page - 1) * limit;
+      const endIndex = page * limit;
+  
+      // Fetch and sort users by emailsSent in descending order
+      const users = await User.find()
+        .sort({ emailsSent: -1 }) // Sort by emailsSent in descending order
+        .skip(startIndex)
+        .limit(limit);
+  
+      const totalUsers = await User.countDocuments();
+  
+      const response = {
+        data: users,
+        currentPage: page,
+        totalPages: Math.ceil(totalUsers / limit)
+      };
+  
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: error.message
+      });
+    }
+  };
+  

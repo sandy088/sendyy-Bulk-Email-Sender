@@ -10,6 +10,13 @@ export const DataContext = createContext()
 const DataProvider = ({ children }) => {
 
     const [authToken, setAuthToken] = useState(localStorage.getItem("token")? JSON.parse(localStorage.getItem("token")) : null)
+    const [role, setRole] = useState(localStorage.getItem("role")? JSON.parse(localStorage.getItem("role")) : null)
+    const [userEmailsSent, setUserEmailSent] = useState(0)
+    const [userEmaillistCount, setUserEmaillistCount] = useState(0)
+
+    const [allUsers, setAllUsers] = useState(0)
+    const [tSentEmails, setTotalEmails] = useState(0)
+    const [emailLists, setEmailLists] = useState(0)
 
     const [signupData, setSignupData] = useState({
         name: "",
@@ -48,10 +55,16 @@ const DataProvider = ({ children }) => {
             console.log(data)
             isLogin? localStorage.setItem("token", JSON.stringify(data.data.token)) : toast.success("Log in now") 
             isLogin && setAuthToken(data.data.token)
+            
+            isLogin && setRole(data.data.role)
+            isLogin? localStorage.setItem("role", JSON.stringify(data.data.role)) : console.log('login To Setup')
+            console.log("Role is: ",role)
+
             console.log("Successfully User created✅", data)
             isLogin ? toast.success("Logged in successfull") : toast.success("Registration successfull")
         } catch (error) {
             console.log(error)
+            toast.dismiss()
             toast.error("Error while Signing Up")
         }
 
@@ -74,6 +87,7 @@ const DataProvider = ({ children }) => {
     }
 
     const setupSMTP = async(smtpData) => {
+
         console.log(smtpData)
 
         try {
@@ -120,11 +134,14 @@ const DataProvider = ({ children }) => {
             }})
 
             setEmailsListNames(response.data.data)
-            console.log(response.data.data)
+            setUserEmailSent(response.data.emailsent)
+            setUserEmaillistCount(response.data.totalLists)
+            console.log(response.data)
             toast.dismiss()
             toast.success("Email List Fetched Successfully")
             
         } catch (error) {
+            toast.dismiss()
             console.error("Error while Getting Email List Names: ",error)
         }
     }
@@ -154,7 +171,18 @@ const DataProvider = ({ children }) => {
         getEmailList,
         emailsListNames,
         mailContent,
-        setMailContent
+        setMailContent,
+        role,
+        userEmailsSent,
+        setUserEmailSent,
+        userEmaillistCount,
+        allUsers, 
+        setAllUsers,
+        tSentEmails, 
+        setTotalEmails,
+        emailLists, 
+        setEmailLists
+
     }
 
     return (
